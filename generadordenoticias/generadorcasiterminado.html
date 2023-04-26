@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generador de noticias</title>
+  <link rel="stylesheet" type="text/css" href="generadorcasiterminado.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    $(function() {
+  $("#fecha").datepicker({
+    dateFormat: 'dd M, yy',
+    changeMonth: true,
+    changeYear: true,
+    yearRange: "-100:+0",
+    monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
+  });
+
+      $("form").submit(function() {
+        var titulo = $("#titulo").val();
+        var fecha = $("#fecha").val();
+        var genero = $("#genero").val();
+        var autor = $("#autor").val();
+        var noticia = $("#noticia").val();
+        var imagen = $("#imagen").val();
+         var description = $("#description").val();
+        if (titulo === '' || fecha === '' || genero === '' || autor === '' || noticia === '' || imagen === '' || description === '') {
+          alert("Por favor, llene todos los campos");
+          return false;
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Generador de noticias</h1>
+  <form action="generadorcasiterminado.php" method="post" enctype="multipart/form-data">
+    <label for="titulo">Título:</label>
+    <input type="text" name="titulo" id="titulo" required><br><br>
+    
+    <label for="description">Descripción:</label>
+    <input type="text" name="description" id="description" required><br><br>
+    
+    <label for="fecha">Fecha:</label>
+    <input type="text" name="fecha" id="fecha" readonly required>
+
+   <label for="genero">Género:</label>
+<select name="genero" id="genero" required>
+  <option value="">Seleccione una opción</option>
+  <option value="POLÍTICA">POLÍTICA</option>
+  <option value="ECONOMÍA">ECONOMÍA</option>
+  <option value="SALUD">SALUD</option>
+  <option value="DEPORTES">DEPORTES</option>
+  <option value="RED PILL">RED PILL</option>
+  <option value="PROGRESISMO">PROGRESISMO</option>
+  <option value="ENTRETENIMIENTO">ENTRETENIMIENTO</option>
+</select><br><br>
+
+    <label for="autor">Autor:</label>
+<select name="autor" id="autor" required>
+      <option value="">Seleccione una opción</option>
+  <option value="Juan Perez">Juan Perez</option>
+  <option value="Donai De La Zerda">Donai De La Zerda</option>
+  <option value="Andrea Lopez">Andrea Lopez</option>
+  <option value="Horacio Fernandez">Horacio Fernandez</option>
+</select><br><br>
+
+    <label for="noticia">Noticia:</label>
+    <textarea name="noticia" id="noticia" cols="30" rows="10" required></textarea><br><br>
+
+    <label for="imagen">Imagen:</label>
+    <input type="file" name="imagen" id="imagen" required><br><br>
+
+    <input type="submit" name="submit" value="Enviar">
+  </form>
+</body>
+</html>
